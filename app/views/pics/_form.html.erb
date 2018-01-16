@@ -1,0 +1,26 @@
+<%= form_for @pic do |f| %>
+  <% if @pic.errors.any? %>
+    <% @pic.errors.full_messages.each do |error| %>
+      <%= error %>
+    <%end%>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control', rows: 5, placeholder: 'Content' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Submit", class: 'btn btn-primary' %>
+  </div>
+<% end %>
