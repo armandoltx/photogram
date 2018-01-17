@@ -3,19 +3,19 @@
     <div class="cover-container">
       <div class="inner cover">
         <h1 class="cover-heading">Cover your page.</h1>
-        <%= @pics.each do |pic| %>
+        <% @pics.each do |pic| %>
           <div class="app-card-container">
             <div class="card">
               <h2>
                 <%= pic.title %>
               </h2>
               <%= image_tag( pic.image ) %>
-                <div class="description">
-                  <%= pic.description %>
-                </div>
+              <div class="description">
+                <%= pic.description %>
+              </div>
             </div>
           </div>
-          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
