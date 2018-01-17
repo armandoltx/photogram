@@ -1,6 +1,9 @@
 class PicsController < ApplicationController
   def index
-    @pics ||= Pic.all
+    @pics ||= Pic.all.order("created_at DESC")
+  end
+
+  def show
   end
 
   def new
@@ -15,14 +18,25 @@ class PicsController < ApplicationController
       redirect_to root_path
     else
       flash[:message] = "Image NOT created"
-      render new
+      render :new
     end
   end
 
   def edit
+    @pic ||= Pic.find(params[:id])
   end
 
-  def show
+  def update
+    @pic = Pic.find(params[:id])
+
+    if @pic.update(pic_params)
+      flash[:message] = "Image edited"
+      redirect_to root_path
+    else
+      flash[:message] = 'Image not edited'
+      render :edit
+    end
+    
   end
 
   private

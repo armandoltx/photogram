@@ -6,12 +6,16 @@
         <%= @pics.each do |pic| %>
           <div class="app-card-container">
             <div class="card">
-              <h2><%= pic.title %></h2>
+              <h2>
+                <%= pic.title %>
+              </h2>
               <%= image_tag( pic.image ) %>
-              <div class="description"><%= pic.description %></div>
+                <div class="description">
+                  <%= pic.description %>
+                </div>
             </div>
           </div>
-        <% end %>
+          <% end %>
       </div>
     </div>
   </div>
