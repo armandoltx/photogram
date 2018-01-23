@@ -1,4 +1,6 @@
 class PicsController < ApplicationController
+  before_action :set_pic_item, only: [:edit, :update ]
+
   def index
     @pics ||= Pic.all.order("created_at DESC")
   end
@@ -23,11 +25,9 @@ class PicsController < ApplicationController
   end
 
   def edit
-    @pic ||= Pic.find(params[:id])
   end
 
   def update
-    @pic = Pic.find(params[:id])
 
     if @pic.update(pic_params)
       flash[:message] = "Image edited"
@@ -40,6 +40,10 @@ class PicsController < ApplicationController
   end
 
   private
+
+  def set_pic_item
+    @pic ||= Pic.find(params[:id])
+  end
 
   def pic_params
     params.require(:pic).permit(:title, :description, :image)
