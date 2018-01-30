@@ -15,6 +15,11 @@ class PicsController < ApplicationController
   def create
     @pic ||= Pic.new(pic_params)
 
+    if params[:file].present?
+      req = Cloudinary::Uploader.upload(params[:file])
+      @pic.image = req["url"]
+    end
+      
     if @pic.save
       flash[:message] = "Image created"
       redirect_to root_path
@@ -28,6 +33,11 @@ class PicsController < ApplicationController
   end
 
   def update
+
+    if params[:file].present?
+      req = Cloudinary::Uploader.upload(params[:file])
+      @pic.image = req["url"]
+    end
 
     if @pic.update(pic_params)
       flash[:message] = "Image edited"
