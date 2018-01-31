@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # sign_up for register
   root to: 'pics#index'
   resources :pics
+  get 'user_pics' => 'pics#user_pics', as: 'user_pics_index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

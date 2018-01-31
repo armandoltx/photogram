@@ -1,0 +1,12 @@
+<% @pics.each do |pic| %>
+              <h2>
+                <%= pic.title %>
+              </h2>
+              <%= image_tag( pic.image ) %>
+              <%# cl_image_tag( pic.image ) %> <%# To display cloudinary image %>
+              <div class="description">
+                <%= pic.description %>
+              </div>
+            </div>
+          </div>
+        <% end %>

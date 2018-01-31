@@ -5,6 +5,10 @@ class PicsController < ApplicationController
     @pics ||= Pic.all.order("created_at DESC")
   end
 
+  def user_pics
+    @pics ||= current_user.pics
+  end
+
   def show
   end
 
