@@ -2,11 +2,11 @@ class PicsController < ApplicationController
   before_action :set_pic_item, only: [:edit, :update ]
 
   def index
-    @pics ||= Pic.all.order("created_at DESC")
+    @pics ||= Pic.all.by_creation
   end
 
   def user_pics
-    @pics ||= current_user.pics
+    @pics ||= current_user.pics.by_creation
   end
 
   def show
