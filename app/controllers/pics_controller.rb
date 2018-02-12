@@ -1,8 +1,11 @@
 class PicsController < ApplicationController
-  before_action :set_pic_item, only: [:edit, :update ]
+  before_action :set_pic_item, only: [:edit, :update, :vote]
+  before_action :authenticate_user!, except: [:index, :show]
+  respond_to :js, :json, :html
 
   def index
     @pics ||= Pic.all.by_creation
+    # @pic ||= Pic.find(params[:id])
   end
 
   def user_pics
@@ -51,6 +54,19 @@ class PicsController < ApplicationController
       render :edit
     end
     
+  end
+
+  def vote
+    if !current_user.liked? @pic
+      @pic.liked_by current_user
+    elsif current_user.liked? @pic
+      @pic.unliked_by current_user
+    end
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+    # end
+    respond_to :html, :js
   end
 
   private

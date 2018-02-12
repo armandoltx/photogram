@@ -1,3 +1,4 @@
+<% pic_class = "liked"%>
 <div class="site-wrapper">
   <div class="site-wrapper-inner">
     <div class="cover-container">
@@ -12,6 +13,11 @@
               <%= image_tag( pic.image ) %>
               <%# cl_image_tag( pic.image ) %> <%# To display cloudinary image %>
               <div class="description">
+                  <%= link_to like_pic_path(pic), class: "like-btn #{pic_class if current_user && current_user.liked?(pic)}", method: :put, remote: :true, id: "pic-#{pic.id}-like-btn" do %>
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                  <% end %>
+                <span id="pic-<%= pic.id %>-likes-count" class="likes-count"><%= pic.votes_for.size %></span>
+                <hr>
                 <%= pic.description %>
               </div>
             </div>

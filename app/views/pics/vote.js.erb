@@ -1,0 +1,8 @@
+<% if current_user.liked? @pic %>
+  $('#pic-<%= @pic.id %>-like-btn').addClass('liked'); 
+<% else %>
+  $('#pic-<%= @pic.id %>-like-btn').removeClass('liked');
+<% end %>
+  $("#pic-<%= @pic.id %>-likes-count").html("<%= @pic.get_upvotes.size %>");
+
+// Needs to get the id, because the class works for all of the pics at the same time, we need to target one at a time.
