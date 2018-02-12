@@ -12,7 +12,6 @@ a:focus,
 a:hover {
   color: #fff;
 }
-
 /* Custom default button */
 .btn-secondary,
 .btn-secondary:hover,
@@ -162,3 +161,15 @@ body {
   }
 }
 
+.card {
+  .description {
+    a{
+      color: white;
+    }
+    .liked {
+      .fa-heart {
+        color: red;
+      }
+    }
+  }
+}
