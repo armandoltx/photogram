@@ -4,8 +4,8 @@ class PicsController < ApplicationController
   respond_to :js, :json, :html
 
   def index
-    @pics ||= Pic.all.by_creation
-    # @pic ||= Pic.find(params[:id])
+    @pics ||= Pic.includes(:comments).all.by_creation
+    @comment ||= Comment.new    # to be able to create comments in the index view
   end
 
   def user_pics

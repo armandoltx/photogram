@@ -12,13 +12,28 @@
               </h2>
               <%= image_tag( pic.image ) %>
               <%# cl_image_tag( pic.image ) %> <%# To display cloudinary image %>
-              <div class="description">
+              <div class="likes">
                   <%= link_to like_pic_path(pic), class: "like-btn #{pic_class if current_user && current_user.liked?(pic)}", method: :put, remote: :true, id: "pic-#{pic.id}-like-btn" do %>
                     <i class="fa fa-heart" aria-hidden="true"></i>
                   <% end %>
                 <span id="pic-<%= pic.id %>-likes-count" class="likes-count"><%= pic.votes_for.size %></span>
                 <hr>
+              </div>
+              <div class="description">
                 <%= pic.description %>
+              </div>
+              <div class="comment-card">
+              <hr>
+                <% if current_user %>
+                  <%= form_for @comment, url: '#' do |f| %>
+                    <div class="form-group">
+                      <%= f.label :content %>
+                      <%= f.text_area :content, class: 'form-control' %>
+                    </div>
+                    <%= f.submit 'Post Comment', class: 'btn btn-primary' %>
+                  <% end %>
+              <% end %>
+              <%= render pic.comments %>
               </div>
             </div>
           </div>
